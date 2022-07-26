@@ -396,6 +396,47 @@ app.get('/sums',(req,res) =>{
 });
 
 
+//route for list count of users
+app.get('/sums',(req,res) =>{
+    let sql =" select * from subscribe";
+    let query =conn.query (sql,(err,results)=>{
+           if(err)throw err;
+           res.json(results);
+    });
+});
+
+//route for list count of requests
+app.get('/spots',(req,res) =>{
+    let sql =" select * from spot";
+    let query =conn.query (sql,(err,results)=>{
+           if(err)throw err;
+           res.json(results);
+    });
+});
+
+
+//route for latest requests
+app.get('/newreq',(req,res) =>{
+    let sql ="select max(id)from hotspot";
+    let query =conn.query (sql,(err,results)=>{
+           if(err)throw err;
+           res.json(results);
+    });
+});
+
+
+//route for list todays added users
+app.get('/current',(req,res) =>{
+    let sql ="SELECT * FROM subscribe WHERE pdate >= CURRENT_DATE";
+    let query =conn.query (sql,(err,results)=>{
+           if(err)throw err;
+           res.json(results);
+    });
+});
+
+
+
+
 //app api
 //route for getting the data from users
 //inserted data by users
