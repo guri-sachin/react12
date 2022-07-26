@@ -386,6 +386,15 @@ app.get('/history',(req,res) =>{
     });
 });
 
+//route for list count of users
+app.get('/sums',(req,res) =>{
+    let sql ="SELECT count(*) from subscribe";
+    let query =conn.query (sql,(err,results)=>{
+           if(err)throw err;
+           res.json(results);
+    });
+});
+
 
 //app api
 //route for getting the data from users
